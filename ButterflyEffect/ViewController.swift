@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+//import Social
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
@@ -41,52 +42,52 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     @IBAction func enter() {
-        indicator.text = genderField.text
         
         let gender = genderField.text!
         let year = yearField.text!
         let month = monthField.text!
         
-        let todoEndpoint: String = "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/"
+        let URL: String = "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/"
         
-        Alamofire.request(.GET, todoEndpoint)
-            .responseJSON { response in
+        Alamofire.request(.GET, URL).responseJSON { response in
                 guard response.result.error == nil else {
-                    // got an error in getting the data, need to handle it
-                    print("error calling GET on /todos/1")
+               
+                    print("error calling GET")
                     print(response.result.error!)
                     return
                 }
                 
                 if let value = response.result.value {
-                    // handle the results as JSON, without a bunch of nested if loops
-                    let todo = JSON(value)
-                    // now we have the results, let's just print them though a tableview would definitely be better UI:
-                    print("The response is: " + todo.description)
-                    if let age = todo["age"].string {
-                        // to access a field:
-                        print("The age is: " + age)
+                  
+                    let responseFromServer = JSON(value)
+                  
+                    print("The response is: " + responseFromServer.description)
+                    if let life_remain = responseFromServer["remaining_life_expectancy"].double {
+                        print("remaining_life_expectancy: \(life_remain)")
+                        self.indicator.text = "남은 인생 : \(life_remain)%"
                     } else {
-                        print("error parsing /todos/1")
+                        print("error parsing ")
                     }
                 }
         }
-        
-        
-//        Alamofire.request(.GET, "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/")
-//            .responseJSON { response in
-//                print(response.request)  // original URL request
-//                print(response.response) // URL response
-//                print(response.data)     // server data
-//                print(response.result)   // result of response serialization
-//                
-//                if let JSON = response.result.value {
-//                    print("JSON: \(JSON)")
-//                    self.JSONInput = (JSON as! String)
-//                }
-//        }
     }
 
+//    @IBAction func survivedButton(sender: AnyObject) {
+//        
+//        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook) {
+//            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+//            
+//            self.presentViewController(fbShare, animated: true, completion: nil)
+//            
+//        } else {
+//            let alert = UIAlertController(title: "로그인", message: "페이스북 어플리케이션에서 먼저 로그인하세요", preferredStyle: UIAlertControllerStyle.Alert)
+//            
+//            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//        }
+//    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

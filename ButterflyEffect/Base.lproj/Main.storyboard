@@ -69,6 +69,9 @@
                                 <state key="normal" title="생존신고">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="survivedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vOt-IV-cBP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xth-Qv-CB1">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
