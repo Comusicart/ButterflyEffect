@@ -11,15 +11,33 @@ import Alamofire
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
-    
     let genderOption = ["male", "female"]
     let yearOption = Array(1...100)
     let monthOption = Array(1...11)
+    
+    var JSONInput = ""
     
     @IBOutlet var yearField: UITextField!
     @IBOutlet var monthField: UITextField!
     @IBOutlet var genderField: UITextField!
     @IBOutlet var indicator: UILabel!
+    
+    func parseJSONResults() -> [String: AnyObject]? {
+        let data = JSONInput.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        do {
+            if let data = data,
+                json = try NSJSONSerialization.JSONObjectWithData(data, options:[]) as? [String: AnyObject] {
+                return json
+            } else {
+                print("No Data :/")
+            }
+        } catch {
+            print("Error, Could not parse the JSON request")
+        }
+        
+        return nil
+    }
     
     @IBAction func enter() {
         indicator.text = genderField.text
@@ -37,6 +55,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
+                    self.JSONInput = (JSON as! String)
                 }
         }
     }
