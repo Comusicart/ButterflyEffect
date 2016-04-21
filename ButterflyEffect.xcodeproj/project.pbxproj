@@ -12,7 +12,6 @@
 		3BF741051CC926A8008F60C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF741031CC926A8008F60C0 /* Main.storyboard */; };
 		3BF741071CC926A8008F60C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BF741061CC926A8008F60C0 /* Assets.xcassets */; };
 		3BF7410A1CC926A8008F60C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF741081CC926A8008F60C0 /* LaunchScreen.storyboard */; };
-		3BF741141CC92830008F60C0 /* Facebook_logo_(square).png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF741121CC92830008F60C0 /* Facebook_logo_(square).png */; };
 		3BF741171CC92B6A008F60C0 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF741161CC92B6A008F60C0 /* Heart.png */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +23,6 @@
 		3BF741061CC926A8008F60C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BF741091CC926A8008F60C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BF7410B1CC926A8008F60C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3BF741121CC92830008F60C0 /* Facebook_logo_(square).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Facebook_logo_(square).png"; sourceTree = "<group>"; };
 		3BF741161CC92B6A008F60C0 /* Heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +71,6 @@
 			isa = PBXGroup;
 			children = (
 				3BF741161CC92B6A008F60C0 /* Heart.png */,
-				3BF741121CC92830008F60C0 /* Facebook_logo_(square).png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -138,7 +135,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BF741171CC92B6A008F60C0 /* Heart.png in Resources */,
-				3BF741141CC92830008F60C0 /* Facebook_logo_(square).png in Resources */,
 				3BF7410A1CC926A8008F60C0 /* LaunchScreen.storyboard in Resources */,
 				3BF741071CC926A8008F60C0 /* Assets.xcassets in Resources */,
 				3BF741051CC926A8008F60C0 /* Main.storyboard in Resources */,
