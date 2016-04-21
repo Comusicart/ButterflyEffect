@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
@@ -46,18 +47,44 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let year = yearField.text!
         let month = monthField.text!
         
-        Alamofire.request(.GET, "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/")
+        let todoEndpoint: String = "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/"
+        
+        Alamofire.request(.GET, todoEndpoint)
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
+                guard response.result.error == nil else {
+                    // got an error in getting the data, need to handle it
+                    print("error calling GET on /todos/1")
+                    print(response.result.error!)
+                    return
+                }
                 
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                    self.JSONInput = (JSON as! String)
+                if let value = response.result.value {
+                    // handle the results as JSON, without a bunch of nested if loops
+                    let todo = JSON(value)
+                    // now we have the results, let's just print them though a tableview would definitely be better UI:
+                    print("The response is: " + todo.description)
+                    if let age = todo["age"].string {
+                        // to access a field:
+                        print("The age is: " + age)
+                    } else {
+                        print("error parsing /todos/1")
+                    }
                 }
         }
+        
+        
+//        Alamofire.request(.GET, "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/")
+//            .responseJSON { response in
+//                print(response.request)  // original URL request
+//                print(response.response) // URL response
+//                print(response.data)     // server data
+//                print(response.result)   // result of response serialization
+//                
+//                if let JSON = response.result.value {
+//                    print("JSON: \(JSON)")
+//                    self.JSONInput = (JSON as! String)
+//                }
+//        }
     }
 
     override func viewDidLoad() {
