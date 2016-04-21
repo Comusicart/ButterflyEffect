@@ -28,7 +28,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         let year = yearField.text!
         let month = monthField.text!
         
-        Alamofire.request(.GET, "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)\(month)/")
+        Alamofire.request(.GET, "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)y\(month)m/")
             .responseJSON { response in
                 print(response.request)  // original URL request
                 print(response.response) // URL response
