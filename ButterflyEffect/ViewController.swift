@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
-
+    
+    
     let genderOption = ["male", "female"]
     let yearOption = Array(1...100)
     let monthOption = Array(1...11)
@@ -21,8 +23,23 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     @IBAction func enter() {
         indicator.text = genderField.text
+        
+        let gender = genderField.text!
+        let year = yearField.text!
+        let month = monthField.text!
+        
+        Alamofire.request(.GET, "http://api.population.io:80/1.0/life-expectancy/remaining/\(gender)/Rep%20of%20Korea/2016-04-22/\(year)\(month)/")
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+        }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +58,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         monthPickerView.delegate=self
         monthPickerView.tag = 3
         monthField.inputView = monthPickerView
-        
-    
         
         // Do any additional setup after loading the view, typically from a nib.
     }
